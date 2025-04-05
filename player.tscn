@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://i6rcxjyg7pg8"]
+[gd_scene load_steps=8 format=3 uid="uid://i6rcxjyg7pg8"]
 
 [ext_resource type="Texture2D" uid="uid://byjxgycvqo7xw" path="res://sprites/sprite_sheet.png" id="1_eysjt"]
 [ext_resource type="Script" path="res://player.gd" id="1_h0dt5"]
 [ext_resource type="Material" uid="uid://dskf2jipo7ipb" path="res://player_material.tres" id="2_2npy3"]
+[ext_resource type="Shader" path="res://vignette.gdshader" id="4_yqpa2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fbbo0"]
 atlas = ExtResource("1_eysjt")
@@ -10,6 +11,13 @@ region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbaqs"]
 size = Vector2(30, 30)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mdgvt"]
+shader = ExtResource("4_yqpa2")
+shader_parameter/outerRadius = 1.0
+shader_parameter/steps = null
+shader_parameter/max_steps = null
+shader_parameter/fade = Color(0, 0, 0, 0.611765)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 128
@@ -27,3 +35,23 @@ target_position = Vector2(0, 32)
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Vignette" type="ColorRect" parent="UILayer/Control"]
+material = SubResource("ShaderMaterial_mdgvt")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 600.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.611765)

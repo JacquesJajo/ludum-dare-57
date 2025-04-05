@@ -1,7 +1,6 @@
 shader_type canvas_item;
 
-uniform int steps;
-uniform int max_steps;
+uniform float breakage;
 uniform vec4 fade: source_color;
 
 void vertex() {
@@ -14,7 +13,7 @@ void fragment() {
 		// do nothing
 	}
 	else {
-		COLOR = mix(fade, COLOR, float(steps)/float(max_steps));
+		COLOR = mix(COLOR, fade, breakage);
 	}
 }
 
