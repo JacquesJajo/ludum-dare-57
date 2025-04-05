@@ -67,6 +67,7 @@ func lift():
 
 func collect_treasure(amount: int):
 	score += amount
+	$UILayer/Control/Score.text = "Gold: " + str(score)
 
 func is_moving():
 	return state == State.MOVE

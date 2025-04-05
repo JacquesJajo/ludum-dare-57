@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://um7h5spxvgi7"]
 
-[ext_resource type="Script" path="res://coins.gd" id="1_54tqx"]
+[ext_resource type="Script" path="res://coin_pouch.gd" id="1_8xyc5"]
 [ext_resource type="Texture2D" uid="uid://byjxgycvqo7xw" path="res://sprites/sprite_sheet.png" id="2_sndur"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s83bh"]
@@ -11,7 +11,7 @@ atlas = ExtResource("2_sndur")
 region = Rect2(96, 32, 32, 32)
 
 [node name="CoinPouch" type="Node2D"]
-script = ExtResource("1_54tqx")
+script = ExtResource("1_8xyc5")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 128
