@@ -1,7 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://kcll2ym0a8pd"]
+[gd_scene load_steps=3 format=3 uid="uid://kcll2ym0a8pd"]
 
+[ext_resource type="Script" path="res://game.gd" id="1_h7vbc"]
 [ext_resource type="PackedScene" uid="uid://dtaww5ntaqehs" path="res://level_1.tscn" id="1_qvvi8"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_h7vbc")
 
 [node name="Level1" parent="." instance=ExtResource("1_qvvi8")]
+
+[node name="RestartTimer" type="Timer" parent="."]
+wait_time = 4.0
+
+[connection signal="restart_level" from="Level1" to="." method="_on_restart_level"]
+[connection signal="timeout" from="RestartTimer" to="." method="_on_restart_timer_timeout"]

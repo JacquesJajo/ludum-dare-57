@@ -1,13 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://i6rcxjyg7pg8"]
+[gd_scene load_steps=7 format=3 uid="uid://i6rcxjyg7pg8"]
 
-[ext_resource type="Texture2D" uid="uid://byjxgycvqo7xw" path="res://sprites/sprite_sheet.png" id="1_eysjt"]
 [ext_resource type="Script" path="res://player.gd" id="1_h0dt5"]
 [ext_resource type="Material" uid="uid://dskf2jipo7ipb" path="res://player_material.tres" id="2_2npy3"]
+[ext_resource type="Texture2D" uid="uid://bpyf4rmdwcqa" path="res://sprites/boat.png" id="3_qiftn"]
 [ext_resource type="Shader" path="res://vignette.gdshader" id="4_yqpa2"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fbbo0"]
-atlas = ExtResource("1_eysjt")
-region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbaqs"]
 size = Vector2(30, 30)
@@ -25,7 +21,7 @@ script = ExtResource("1_h0dt5")
 
 [node name="GFX" type="Sprite2D" parent="."]
 material = ExtResource("2_2npy3")
-texture = SubResource("AtlasTexture_fbbo0")
+texture = ExtResource("3_qiftn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_rbaqs")

@@ -1,10 +1,12 @@
 extends CharacterBody2D
 
-enum State {IDLE, MOVE}
+enum State {IDLE, MOVE, SUNK}
 
 const STEP_SIZE: float = 32.0
 const MAX_STEPS: int = 20
-const SPEED: float = 200.0
+const SPEED: float = 150.0
+
+signal player_sink
 
 var steps: int
 
@@ -23,20 +25,23 @@ func _ready():
 func _process(delta):
 	match state:
 		State.IDLE:
-			if Input.is_action_just_pressed("up"):
+			if Input.is_action_pressed("up"):
 				_step(Vector2.UP)
-			if Input.is_action_just_pressed("down"):
+			if Input.is_action_pressed("down"):
 				_step(Vector2.DOWN)
-			if Input.is_action_just_pressed("left"):
+			if Input.is_action_pressed("left"):
 				_step(Vector2.LEFT)
-			if Input.is_action_just_pressed("right"):
+			if Input.is_action_pressed("right"):
 				_step(Vector2.RIGHT)
 		State.MOVE:
 			self.position = self.position.move_toward(target_pos, SPEED * delta)
 			if self.position == target_pos:
 				state = State.IDLE
+		State.SUNK:
+			pass
 
 func _step(dir):
+	$GFX.look_at(self.global_position + STEP_SIZE * dir.rotated(PI/2.0))
 	$TileRayCast.target_position = STEP_SIZE * dir
 	$TileRayCast.force_raycast_update()
 	if $TileRayCast.is_colliding():
@@ -50,6 +55,8 @@ func _step(dir):
 	steps -= 1
 	if steps <= 0:
 		steps = 0
+		state = State.SUNK
+		player_sink.emit()
 	$GFX.material.set_shader_parameter("steps", steps)
 	$UILayer/Control/Vignette.material.set_shader_parameter("steps", steps)
 

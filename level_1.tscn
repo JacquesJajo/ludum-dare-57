@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtaww5ntaqehs"]
+[gd_scene load_steps=5 format=3 uid="uid://dtaww5ntaqehs"]
 
 [ext_resource type="PackedScene" uid="uid://i6rcxjyg7pg8" path="res://player.tscn" id="1_fcpce"]
 [ext_resource type="TileSet" uid="uid://c71aw4ih3fmgv" path="res://main_tileset.tres" id="1_iab8g"]
+[ext_resource type="Script" path="res://level.gd" id="1_uko62"]
 [ext_resource type="PackedScene" uid="uid://byq6mp1tew5n0" path="res://camera_follow.tscn" id="3_uvlcl"]
 
 [node name="Level1" type="Node2D"]
+script = ExtResource("1_uko62")
 
 [node name="Maps" type="Node2D" parent="."]
 
@@ -24,3 +26,5 @@ position = Vector2(16, 16)
 [node name="CameraFollow" parent="." node_paths=PackedStringArray("Player") instance=ExtResource("3_uvlcl")]
 position = Vector2(16, 16)
 Player = NodePath("../Player")
+
+[connection signal="player_sink" from="Player" to="." method="_on_player_sink"]
