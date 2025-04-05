@@ -1,0 +1,14 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://c71aw4ih3fmgv"]
+
+[ext_resource type="PackedScene" uid="uid://5k2tk6glxtf6" path="res://sea.tscn" id="1_ec56y"]
+[ext_resource type="PackedScene" uid="uid://k81wj8nht0c6" path="res://shallow.tscn" id="2_s3umx"]
+[ext_resource type="PackedScene" uid="uid://b1ikke0c4aosq" path="res://shore.tscn" id="3_8625w"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_rxufb"]
+scenes/1/scene = ExtResource("1_ec56y")
+scenes/2/scene = ExtResource("2_s3umx")
+scenes/3/scene = ExtResource("3_8625w")
+
+[resource]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetScenesCollectionSource_rxufb")

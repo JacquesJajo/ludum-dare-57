@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://i6rcxjyg7pg8"]
+
+[ext_resource type="Texture2D" uid="uid://byjxgycvqo7xw" path="res://sprites/sprite_sheet.png" id="1_eysjt"]
+[ext_resource type="Script" path="res://player.gd" id="1_h0dt5"]
+[ext_resource type="Material" uid="uid://dskf2jipo7ipb" path="res://player_material.tres" id="2_2npy3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbbo0"]
+atlas = ExtResource("1_eysjt")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbaqs"]
+size = Vector2(30, 30)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 128
+script = ExtResource("1_h0dt5")
+
+[node name="GFX" type="Sprite2D" parent="."]
+material = ExtResource("2_2npy3")
+texture = SubResource("AtlasTexture_fbbo0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rbaqs")
+
+[node name="TileRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 32)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false

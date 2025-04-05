@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://k81wj8nht0c6"]
+
+[ext_resource type="Texture2D" uid="uid://byjxgycvqo7xw" path="res://sprites/sprite_sheet.png" id="1_sjlig"]
+[ext_resource type="Script" path="res://shallow.gd" id="1_y62d4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wpjja"]
+size = Vector2(32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1s3w2"]
+atlas = ExtResource("1_sjlig")
+region = Rect2(0, 32, 32, 32)
+
+[node name="Shallow" type="Node2D"]
+script = ExtResource("1_y62d4")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_wpjja")
+
+[node name="GFX" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_1s3w2")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

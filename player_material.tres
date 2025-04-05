@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dskf2jipo7ipb"]
+
+[ext_resource type="Shader" path="res://player_material.gdshader" id="1_naom4"]
+
+[resource]
+shader = ExtResource("1_naom4")
+shader_parameter/steps = null
+shader_parameter/fade = Color(0.207843, 0.364706, 0.411765, 1)
