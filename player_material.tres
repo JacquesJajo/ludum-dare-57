@@ -5,4 +5,5 @@
 [resource]
 shader = ExtResource("1_naom4")
 shader_parameter/steps = null
+shader_parameter/max_steps = null
 shader_parameter/fade = Color(0.207843, 0.364706, 0.411765, 1)

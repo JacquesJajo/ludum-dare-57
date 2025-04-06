@@ -1,13 +1,73 @@
-[gd_scene load_steps=4 format=3 uid="uid://5k2tk6glxtf6"]
+[gd_scene load_steps=12 format=3 uid="uid://5k2tk6glxtf6"]
 
-[ext_resource type="Texture2D" uid="uid://byjxgycvqo7xw" path="res://sprites/sprite_sheet.png" id="1_wd7pg"]
+[ext_resource type="Texture2D" uid="uid://bt4u4klxfptsn" path="res://sprites/water-Sheet.png" id="1_hirgi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_avcej"]
 size = Vector2(32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_82aq1"]
-atlas = ExtResource("1_wd7pg")
+[sub_resource type="AtlasTexture" id="AtlasTexture_23pbx"]
+atlas = ExtResource("1_hirgi")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_404ni"]
+atlas = ExtResource("1_hirgi")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ia50c"]
+atlas = ExtResource("1_hirgi")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ystm"]
+atlas = ExtResource("1_hirgi")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04uem"]
+atlas = ExtResource("1_hirgi")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kt5xf"]
+atlas = ExtResource("1_hirgi")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bq6e"]
+atlas = ExtResource("1_hirgi")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efij4"]
+atlas = ExtResource("1_hirgi")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jcp8b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23pbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_404ni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ia50c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ystm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04uem")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kt5xf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bq6e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efij4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
 
 [node name="Sea" type="Node2D"]
 
@@ -17,5 +77,7 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_avcej")
 
-[node name="GFX" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_82aq1")
+[node name="GFX" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jcp8b")
+autoplay = "default"
+frame_progress = 0.3558

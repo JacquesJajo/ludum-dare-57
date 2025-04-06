@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtaww5ntaqehs"]
+[gd_scene load_steps=6 format=3 uid="uid://dtaww5ntaqehs"]
 
 [ext_resource type="PackedScene" uid="uid://i6rcxjyg7pg8" path="res://player.tscn" id="1_fcpce"]
 [ext_resource type="TileSet" uid="uid://c71aw4ih3fmgv" path="res://main_tileset.tres" id="1_iab8g"]
 [ext_resource type="Script" path="res://level.gd" id="1_uko62"]
 [ext_resource type="PackedScene" uid="uid://byq6mp1tew5n0" path="res://camera_follow.tscn" id="3_uvlcl"]
+[ext_resource type="PackedScene" uid="uid://s1ncdbrfcbnv" path="res://exit.tscn" id="5_pv3sk"]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_uko62")
@@ -22,9 +23,17 @@ layer_0/tile_data = PackedInt32Array(-589818, 0, 327680, -655355, 0, 327680, -12
 
 [node name="Player" parent="." instance=ExtResource("1_fcpce")]
 position = Vector2(16, 16)
+target_score = 90
 
 [node name="CameraFollow" parent="." node_paths=PackedStringArray("Player") instance=ExtResource("3_uvlcl")]
 position = Vector2(16, 16)
 Player = NodePath("../Player")
 
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="Exit" parent="Entities" instance=ExtResource("5_pv3sk")]
+position = Vector2(16, 48)
+next_level_id = 1
+
+[connection signal="player_exit" from="Player" to="." method="_on_player_exit"]
 [connection signal="player_sink" from="Player" to="." method="_on_player_sink"]

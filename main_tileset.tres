@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://c71aw4ih3fmgv"]
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://c71aw4ih3fmgv"]
 
 [ext_resource type="PackedScene" uid="uid://5k2tk6glxtf6" path="res://sea.tscn" id="1_ec56y"]
 [ext_resource type="PackedScene" uid="uid://k81wj8nht0c6" path="res://shallow.tscn" id="2_s3umx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b0q8o2yerelp5" path="res://ice.tscn" id="4_q3st4"]
 [ext_resource type="PackedScene" uid="uid://c0qyejvob803d" path="res://coins.tscn" id="5_7d6yo"]
 [ext_resource type="PackedScene" uid="uid://um7h5spxvgi7" path="res://coin_pouch.tscn" id="6_57k7n"]
+[ext_resource type="PackedScene" uid="uid://nx11eeowpt70" path="res://whirlpool.tscn" id="7_stm2y"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_rxufb"]
 scenes/1/scene = ExtResource("1_ec56y")
@@ -14,6 +15,7 @@ scenes/3/scene = ExtResource("3_8625w")
 scenes/4/scene = ExtResource("4_q3st4")
 scenes/5/scene = ExtResource("5_7d6yo")
 scenes/6/scene = ExtResource("6_57k7n")
+scenes/7/scene = ExtResource("7_stm2y")
 
 [resource]
 tile_size = Vector2i(32, 32)

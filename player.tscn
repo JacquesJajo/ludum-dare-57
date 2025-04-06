@@ -1,9 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://i6rcxjyg7pg8"]
+[gd_scene load_steps=15 format=3 uid="uid://i6rcxjyg7pg8"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_h0dt5"]
 [ext_resource type="Material" uid="uid://dskf2jipo7ipb" path="res://player_material.tres" id="2_2npy3"]
 [ext_resource type="Texture2D" uid="uid://bpyf4rmdwcqa" path="res://sprites/boat.png" id="3_qiftn"]
 [ext_resource type="Shader" path="res://vignette.gdshader" id="4_yqpa2"]
+[ext_resource type="AudioStream" uid="uid://dguojjyof6kdg" path="res://sounds/sink.wav" id="5_ax4ao"]
+[ext_resource type="AudioStream" uid="uid://b1m7htkpn3ao1" path="res://sounds/pickup_small.wav" id="6_7qu24"]
+[ext_resource type="AudioStream" uid="uid://t4nfwlpblx7l" path="res://sounds/pickup_big.wav" id="7_r8x6p"]
+[ext_resource type="AudioStream" uid="uid://c4bg8acqgk8jr" path="res://sounds/whirlpool.wav" id="8_uqjsm"]
+[ext_resource type="AudioStream" uid="uid://dumddcde2nemq" path="res://sounds/shower.wav" id="9_ofua1"]
+[ext_resource type="AudioStream" uid="uid://b1gds0q26gl7v" path="res://sounds/seagull.wav" id="10_i06hf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbaqs"]
 size = Vector2(30, 30)
@@ -14,6 +20,27 @@ shader_parameter/outerRadius = 1.0
 shader_parameter/steps = null
 shader_parameter/max_steps = null
 shader_parameter/fade = Color(0, 0, 0, 0.611765)
+
+[sub_resource type="Animation" id="Animation_6gc8k"]
+resource_name = "Sunk"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(288, -64), Vector2(288, 100)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7wnu2"]
+_data = {
+"Sunk": SubResource("Animation_6gc8k")
+}
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 128
@@ -39,6 +66,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Vignette" type="ColorRect" parent="UILayer/Control"]
 material = SubResource("ShaderMaterial_mdgvt")
@@ -59,3 +87,46 @@ offset_top = 8.0
 offset_right = 62.0
 offset_bottom = 31.0
 text = "Gold: 0"
+
+[node name="Sunk" type="Label" parent="UILayer/Control"]
+layout_mode = 0
+offset_left = 288.0
+offset_top = -64.0
+offset_right = 331.0
+offset_bottom = -41.0
+text = "Sunk!"
+
+[node name="MoveInFrame" type="AnimationPlayer" parent="UILayer/Control/Sunk"]
+libraries = {
+"": SubResource("AnimationLibrary_7wnu2")
+}
+
+[node name="CollectGold" type="Label" parent="UILayer/Control"]
+visible = false
+layout_mode = 0
+offset_left = 128.0
+offset_top = 8.0
+offset_right = 268.0
+offset_bottom = 31.0
+text = "Collect more gold!"
+
+[node name="Sink" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ax4ao")
+
+[node name="PickupSmall" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_7qu24")
+
+[node name="PickupBig" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_r8x6p")
+
+[node name="Whirlpool" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_uqjsm")
+
+[node name="BackgroundWaves" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_ofua1")
+autoplay = true
+
+[node name="Seagull" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_i06hf")
+
+[connection signal="finished" from="BackgroundWaves" to="." method="_on_background_waves_finished"]
